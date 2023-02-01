@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  front:
+    container_name: front
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    depends_on:
+      - back
+
+  back:
+    container_name: back
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    command: bash -c "./scripts/wait-for-it.sh -h local-db -p 3306 &&
+                      npx sequelize-cli db:migrate ;
+                      npx sequelize-cli db:seed:all ;
+                      npm run start"
+    ports:
+      - 8080:8080
+    env_file:
+      - ./back/.env
+    depends_on:
+      - local-db
+
+  local-db:
+    container_name: local-db
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    env_file:
+      - ./local-db/.env
+    volumes:
+      - local-db-data-volume:/var/lib/mysql
+
+volumes:
+  local-db-data-volume:
