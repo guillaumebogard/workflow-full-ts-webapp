@@ -1,6 +1,6 @@
 FROM node:19-alpine3.16
 
-ENV BACK_HOME /home/app/back
+ENV BACK_HOME /home/app/back/
 RUN mkdir -p $BACK_HOME
 WORKDIR $BACK_HOME
 
