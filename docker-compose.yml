@@ -4,7 +4,7 @@ services:
   front:
     container_name: front
     build:
-      context: ./front
+      context: ./front/
       dockerfile: Dockerfile
     ports:
       - 80:80
@@ -14,7 +14,7 @@ services:
   back:
     container_name: back
     build:
-      context: ./back
+      context: ./back/
       dockerfile: Dockerfile
     command: bash -c "./scripts/wait-for-it.sh -h local-db -p 3306 &&
                       npx sequelize-cli db:migrate ;
@@ -35,7 +35,7 @@ services:
     env_file:
       - ./local-db/.env
     volumes:
-      - local-db-data-volume:/var/lib/mysql
+      - local-db-data-volume:/var/lib/mysql/
 
 volumes:
   local-db-data-volume:
