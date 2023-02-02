@@ -1,6 +1,6 @@
 FROM node:19-alpine3.16 AS builder
 
-ENV FRONT_HOME /home/app/front
+ENV FRONT_HOME /home/app/front/
 RUN mkdir -p $FRONT_HOME
 WORKDIR $FRONT_HOME
 
@@ -18,9 +18,14 @@ RUN yarn build
 
 FROM nginx:1.23.3-alpine-slim
 
-ENV BUILT_FRONT_HOME /var/www/front
+ENV BUILT_FRONT_HOME /var/www/front/
 
+# Remove the default nginx config
+RUN rm -rf /etc/nginx/conf.d/*
+
+# Copy the build from the builder stage
 COPY --from=builder /home/app/front/build $BUILT_FRONT_HOME
-COPY --from=builder /home/app/front/nginx.conf /etc/nginx/conf.d/default.conf:ro
+# Copy the nginx config
+COPY --from=builder /home/app/front/nginx/nginx.conf /etc/nginx/conf.d/nginx-front.conf
 
 EXPOSE 80
