@@ -16,7 +16,7 @@ RUN yarn build
 
 ############################################
 
-FROM nginx:1.23.3-alpine-slim
+FROM nginx:1.23.3-alpine-slim AS runner
 
 ENV BUILT_FRONT_HOME /var/www/front/
 
@@ -26,6 +26,6 @@ RUN rm -rf /etc/nginx/conf.d/*
 # Copy the build from the builder stage
 COPY --from=builder /home/app/front/build $BUILT_FRONT_HOME
 # Copy the nginx config
-COPY --from=builder /home/app/front/nginx/nginx.conf /etc/nginx/conf.d/nginx-front.conf
+COPY ./nginx/nginx-front.conf /etc/nginx/conf.d/nginx-front.conf
 
 EXPOSE 80
