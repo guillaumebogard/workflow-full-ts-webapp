@@ -17,10 +17,10 @@ app.use((error: Error, req: express.Request, res: express.Response, next: expres
 });
 
 // Defining API routes
-const baseUrl = '/api/v1';
+const API_baseUrl = '/api/v1';
 
-app.use(`${baseUrl}/user`, userRoutes);
-app.use(`${baseUrl}/users`, usersRoutes);
+app.use(`${API_baseUrl}/user`, userRoutes);
+app.use(`${API_baseUrl}/users`, usersRoutes);
 
 // Running the server
 databaseConfig.sync()
