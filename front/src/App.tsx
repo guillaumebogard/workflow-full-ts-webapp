@@ -1,26 +1,70 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
 
-function App() {
+import type User from './api/user';
+import type Users from './api/users';
+
+import {
+  RequestDataUserCreate,
+  RequestDataUserGetById,
+  RequestDataUserUpdate,
+  RequestDataUserDelete,
+} from './api/user/requestsData';
+
+import {
+  ResponseDataUserCreate,
+  ResponseDataUserGetById,
+  ResponseDataUserUpdate,
+  ResponseDataUserDelete,
+} from './api/user/responsesData';
+
+import {
+  ResponseDataUsersGet
+} from './api/users/responsesData';
+
+import {
+  createUser,
+  getUserById,
+  updateUser,
+  deleteUser,
+} from './api/user/routes';
+
+import { getAllUsers } from './api/users/routes';
+
+export default function App() {
+  const [users, setUsers] = useState<Users>([]);
+
+  useEffect(() => {
+    getAllUsers().then((responseData: ResponseDataUsersGet) => {
+      setUsers(responseData.data.users);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Users</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user: User) => (
+            <tr key={user.id}>
+              <td>{user.id}</td>
+              <td>{user.firstName}</td>
+              <td>{user.lastName}</td>
+              <td>{user.email}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
-
-export default App;
