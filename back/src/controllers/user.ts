@@ -2,14 +2,6 @@ import { RequestHandler } from "express";
 
 import User from '../db/models/user';
 
-/**
- * Create a new user in the database
- *
- * @param req Request object
- * @param res Response object
- * @param next Next function
- * @returns Response object
- */
 export const createUser: RequestHandler = async (req, res, next) => {
   const createUserBody: {
     firstName: string;
@@ -46,14 +38,6 @@ export const createUser: RequestHandler = async (req, res, next) => {
   }
 }
 
-/**
- * Get a user by id from the database
- *
- * @param req Request object
- * @param res Response object
- * @param next Next function
- * @returns Response object
- */
 export const getUserById: RequestHandler = async (req, res, next) => {
   const { id } = req.params;
 
@@ -78,14 +62,6 @@ export const getUserById: RequestHandler = async (req, res, next) => {
   }
 }
 
-/**
- * Update a user by id in the database
- *
- * @param req Request object
- * @param res Response object
- * @param next Next function
- * @returns Response object
- */
 export const updateUser: RequestHandler = async (req, res, next) => {
   const { id } = req.params;
   
@@ -136,14 +112,6 @@ export const updateUser: RequestHandler = async (req, res, next) => {
   }
 }
 
-/**
- * Delete a user by id from the database
- *
- * @param req Request object
- * @param res Response object
- * @param next Next function
- * @returns Response object
- */
 export const deleteUser: RequestHandler = async (req, res, next) => {
   const { id } = req.params;
 
