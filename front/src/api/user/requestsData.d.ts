@@ -30,9 +30,3 @@ export interface RequestDataUserDelete {
     id: number;
   }
 }
-
-export interface RequestDataUserGetByEmail {
-  body: {
-    email: string;
-  }
-}

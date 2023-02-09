@@ -7,7 +7,6 @@ import {
   RequestDataUserGetById,
   RequestDataUserUpdate,
   RequestDataUserDelete,
-  RequestDataUserGetByEmail,
 } from './requestsData';
 
 import {
@@ -15,7 +14,6 @@ import {
   ResponseDataUserGetById,
   ResponseDataUserUpdate,
   ResponseDataUserDelete,
-  ResponseDataUserGetByEmail,
 } from './responsesData';
 
 import API_BASE_URL from '..';
@@ -101,30 +99,6 @@ export const deleteUser = async (requestData: RequestDataUserDelete): Promise<Re
   const response = await axios(request);
 
   const responseData: ResponseDataUserDelete = {
-    message: response.data.message,
-    data: {
-      user: response.data.data as User,
-    }
-  };
-
-  return Promise.resolve(responseData);
-}
-
-export const getUserByEmail = async (requestData: RequestDataUserGetByEmail): Promise<ResponseDataUserGetById> => {
-  const request: AxiosRequestConfig = {
-    url: `${API_BASE_URL}/user`,
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: {
-      ...requestData.body,
-    },
-  };
-
-  const response = await axios(request);
-
-  const responseData: ResponseDataUserGetByEmail = {
     message: response.data.message,
     data: {
       user: response.data.data as User,

@@ -5,29 +5,8 @@ import type User from './api/user';
 import type Users from './api/users';
 
 import {
-  RequestDataUserCreate,
-  RequestDataUserGetById,
-  RequestDataUserUpdate,
-  RequestDataUserDelete,
-} from './api/user/requestsData';
-
-import {
-  ResponseDataUserCreate,
-  ResponseDataUserGetById,
-  ResponseDataUserUpdate,
-  ResponseDataUserDelete,
-} from './api/user/responsesData';
-
-import {
   ResponseDataUsersGet
 } from './api/users/responsesData';
-
-import {
-  createUser,
-  getUserById,
-  updateUser,
-  deleteUser,
-} from './api/user/routes';
 
 import { getAllUsers } from './api/users/routes';
 
@@ -50,6 +29,7 @@ export default function App() {
           <tr>
             <th>ID</th>
             <th>First Name</th>
+            <th>Middle Name</th>
             <th>Last Name</th>
             <th>Email</th>
           </tr>
@@ -59,6 +39,7 @@ export default function App() {
             <tr key={user.id}>
               <td>{user.id}</td>
               <td>{user.firstName}</td>
+              <td>{user.middleName ? user.middleName : ''}</td>
               <td>{user.lastName}</td>
               <td>{user.email}</td>
             </tr>

@@ -27,10 +27,3 @@ export interface ResponseDataUserDelete {
     user: User;
   }
 }
-
-export interface ResponseDataUserGetByEmail {
-  message: string;
-  data: {
-    user: User;
-  }
-}

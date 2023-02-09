@@ -1,4 +1,4 @@
-# Workflow - Full TypeScript WebApp
+# 📦 Workflow - Full TypeScript WebApp
 
 This repository acts as a template for a, containerized fully coded in ***TypeScript***, WebApp.
 
@@ -6,7 +6,7 @@ Stack: **React + Node.js + Express + MySQL**
 
 *It's currently being developed and no major version has been yet achieved.*
 
-## Launch the project
+## 🚀 Launch the project
 
 The project is being containerized thanks to [**Docker**](https://www.docker.com).
 Install Docker if you don't already have it on your machine and launch the daemon before trying to launch this project.
