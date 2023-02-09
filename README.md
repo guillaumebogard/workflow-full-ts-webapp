@@ -8,11 +8,11 @@ Stack: **React + Node.js + Express + MySQL**
 
 ## 🚀 Launch the project
 
-The project is being containerized thanks to [**Docker**](https://www.docker.com).
+The project is being containerized thanks to [**Docker**](https://www.docker.com).<br />
 Install Docker if you don't already have it on your machine and launch the daemon before trying to launch this project.
 
-The `back` and `local-db`containers both need environment variables to setup.
-The containers will try to load up environment files that aren't anywhere to be found after cloning the repository.
+The `back` and `local-db`containers both need environment variables to setup.<br />
+The containers will try to load up environment files that aren't anywhere to be found after cloning the repository.<br />
 This is totally normal, as of right now, as the project only has a local development environment for containerization and these env files shouldn't be pushed on Git because they are local environment files (they may vary from one user to the other).
 
 1. You should *manually create* env files for containers that require them.
